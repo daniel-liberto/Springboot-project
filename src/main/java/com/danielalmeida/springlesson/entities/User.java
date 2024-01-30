@@ -1,5 +1,6 @@
 package com.danielalmeida.springlesson.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -20,6 +21,7 @@ public class User implements Serializable {
   private String email;
   private String phone;
   private String password;
+  @JsonIgnore // avoid "two-way street" when two classes request each other
   @OneToMany(mappedBy = "client")
   private List<Order> orders = new ArrayList<>();
 
